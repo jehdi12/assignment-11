@@ -6,8 +6,8 @@ public interface List<T> {
     
 }
 
-// Implement the SinglyLinkedList class based on the List interface
-class SinglyLinkedList<T> implements List<T> {
+
+class Judas<T> implements List<T> {
     private static class Node<T> {
         T data;
         Node<T> next;
@@ -20,7 +20,7 @@ class SinglyLinkedList<T> implements List<T> {
 
     private Node<T> head;
 
-    SinglyLinkedList() {
+    Judas() {
         this.head = null;
     }
 
@@ -38,8 +38,7 @@ class SinglyLinkedList<T> implements List<T> {
         }
     }
 
-    // Add the other necessary methods for the List interface
-
+    
     public void remove(T item) {
         Node<T> current = head;
         Node<T> prev = null;
@@ -89,21 +88,21 @@ class SinglyLinkedList<T> implements List<T> {
     }
 
     public static void main(String[] args) {
-        SinglyLinkedList<String> disciplesList = new SinglyLinkedList<>();
-        disciplesList.append("Simon (Peter)");
+        Judas<String> disciplesList = new Judas<>();
+        disciplesList.append("Simon ");
         disciplesList.append("Andrew");
-        disciplesList.append("James (son of Zebedee)");
+        disciplesList.append("James ");
         disciplesList.append("John");
         disciplesList.append("Philip");
         disciplesList.append("Bartholomew");
         disciplesList.append("Thomas");
-        disciplesList.append("Matthew (tax collector)");
-        disciplesList.append("James (son of Alphaeus)");
+        disciplesList.append("Matthew ");
+        disciplesList.append("James ");
         disciplesList.append("Thaddaeus");
         disciplesList.append("Simon the Zealot");
-        disciplesList.append("Judas Iscariot");
+        disciplesList.append("Judas ");
 
-        disciplesList.remove("Judas Iscariot"); // Remove the one who betrayed Jesus
+        disciplesList.remove("Judas "); // Remove the one who betrayed Jesus
 
         disciplesList.sort(); // Sort the names in alphabetical order
 
