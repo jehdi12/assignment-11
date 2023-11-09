@@ -1,0 +1,113 @@
+import java.util.*;
+
+
+public interface List<T> {
+    void append(T item);
+    
+}
+
+// Implement the SinglyLinkedList class based on the List interface
+class SinglyLinkedList<T> implements List<T> {
+    private static class Node<T> {
+        T data;
+        Node<T> next;
+
+        Node(T data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    private Node<T> head;
+
+    SinglyLinkedList() {
+        this.head = null;
+    }
+
+    // Implement the append method to add items to the linked list
+    @Override
+    public void append(T item) {
+        if (head == null) {
+            head = new Node<>(item);
+        } else {
+            Node<T> current = head;
+            while (current.next != null) {
+                current = current.next;
+            }
+            current.next = new Node<>(item);
+        }
+    }
+
+    // Add the other necessary methods for the List interface
+
+    public void remove(T item) {
+        Node<T> current = head;
+        Node<T> prev = null;
+
+        while (current != null) {
+            if (current.data.equals(item)) {
+                if (prev == null) {
+                    head = current.next;
+                } else {
+                    prev.next = current.next;
+                }
+                break;
+            }
+            prev = current;
+            current = current.next;
+        }
+    }
+
+    public void sort() {
+        List<T> itemList = new ArrayList<>();
+        Node<T> current = head;
+        while (current != null) {
+            itemList.add(current.data);
+            current = current.next;
+        }
+
+        itemList.sort(Comparator.comparing(Object::toString));
+
+        current = head;
+        for (T item : itemList) {
+            current.data = item;
+            current = current.next;
+        }
+    }
+
+    public void printReverse() {
+        Stack<T> stack = new Stack<>();
+        Node<T> current = head;
+        while (current != null) {
+            stack.push(current.data);
+            current = current.next;
+        }
+
+        while (!stack.isEmpty()) {
+            System.out.println(stack.pop());
+        }
+    }
+
+    public static void main(String[] args) {
+        SinglyLinkedList<String> disciplesList = new SinglyLinkedList<>();
+        disciplesList.append("Simon (Peter)");
+        disciplesList.append("Andrew");
+        disciplesList.append("James (son of Zebedee)");
+        disciplesList.append("John");
+        disciplesList.append("Philip");
+        disciplesList.append("Bartholomew");
+        disciplesList.append("Thomas");
+        disciplesList.append("Matthew (tax collector)");
+        disciplesList.append("James (son of Alphaeus)");
+        disciplesList.append("Thaddaeus");
+        disciplesList.append("Simon the Zealot");
+        disciplesList.append("Judas Iscariot");
+
+        disciplesList.remove("Judas Iscariot"); // Remove the one who betrayed Jesus
+
+        disciplesList.sort(); // Sort the names in alphabetical order
+
+        System.out.println("Names of the twelve apostles in reverse order:");
+        disciplesList.printReverse(); // Print the names in reverse order
+    }
+}
